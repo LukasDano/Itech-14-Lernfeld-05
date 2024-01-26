@@ -1,3 +1,4 @@
 Inputs:
 ERD
 Normalformen/SQL & Raspberry PIs
+Datenschutz
