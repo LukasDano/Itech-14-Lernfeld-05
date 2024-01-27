@@ -1,15 +1,15 @@
 -- RezepteTabelle fuellen
-INSERT INTO REZEPTE (REZEPTENR, REZEPTNAME, Menge) VALUES (01,'Gemuese Suppe', 1);
+INSERT INTO REZEPTE (REZEPTENR, REZEPTENAME, Menge) VALUES (01,'Gemuese Suppe', 1);
 
-INSERT INTO REZEPTE (REZEPTENR, REZEPTNAME, Menge) VALUES (02,'Wiener Wuerstchen-Suppe', 1);
+INSERT INTO REZEPTE (REZEPTENR, REZEPTENAME, Menge) VALUES (02,'Wiener Wuerstchen-Suppe', 1);
 
-INSERT INTO REZEPTE (REZEPTENR, REZEPTNAME, Menge) VALUES (03,'Tomate-Mozzarella-Teller', 1);
+INSERT INTO REZEPTE (REZEPTENR, REZEPTENAME, Menge) VALUES (03,'Tomate-Mozzarella-Teller', 1);
 
-INSERT INTO REZEPTE (REZEPTENR, REZEPTNAME, Menge) VALUES (04,'Tofu-Wuerstchen-Suppe', 1);
+INSERT INTO REZEPTE (REZEPTENR, REZEPTENAME, Menge) VALUES (04,'Tofu-Wuerstchen-Suppe', 1);
 
-INSERT INTO REZEPTE (REZEPTENR, REZEPTNAME, Menge) VALUES (05,'Falafel mit Kartoffelpueree und Ei', 1);
+INSERT INTO REZEPTE (REZEPTENR, REZEPTENAME, Menge) VALUES (05,'Falafel mit Kartoffelpueree und Ei', 1);
 
-INSERT INTO REZEPTE (REZEPTENR, REZEPTNAME, Menge) VALUES (06,'Bauernfruehstueck', 1);
+INSERT INTO REZEPTE (REZEPTENR, REZEPTENAME, Menge) VALUES (06,'Bauernfruehstueck', 1);
 
 
 -- Zutaten zu den Rezepten einfügen
