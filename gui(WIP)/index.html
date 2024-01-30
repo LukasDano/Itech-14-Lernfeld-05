@@ -18,12 +18,8 @@
         <h2>Unser Angebot</h2>
         <p>Unser Angebot ist Nachhaltig & Regional</p>
 
-
-      <div id="main_querry">
-
-        <div id=title> Zeige alle Zutaten die in einem Rezept enthalten sind.</div>
-    
-        <div class="seletionlabel">Wählen sie ein Rezept aus</div>
+        <div id=title>Zeige alle Zutaten eines Rezepts an</div>
+        <p>
     
         <form action="php/allIngredientsByName.php" method="post">
     
@@ -35,7 +31,10 @@
             <option value="Bauernfruehstueck">Bauernfruehstueck</option>
           </select>
     
-          <input type="submit" value="Zeigen">
+          <div class="tooltip">
+            <input type="submit" value="Zeigen">
+            <span class="tooltiptext">Bestätigen sie hier ihre Rezeptauswahl</span>
+          </div>
     
         </form>
 
