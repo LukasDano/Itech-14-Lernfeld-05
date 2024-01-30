@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js"></script>
+
+    <title>Kraut und Rüben</title>
+</head>
+
+<body>
+    <header>
+        <h1>Willkommen bei Kraut und Rüben!</h1>
+    </header>
+
+    <main>
+        <h2>Unser Angebot</h2>
+        <p>Unser Angebot ist Nachhaltig & Regional</p>
+
+
+      <div id="main_querry">
+
+        <div id=title> Zeige alle Zutaten die in einem Rezept enthalten sind.</div>
+    
+        <div class="seletionlabel">Wählen sie ein Rezept aus</div>
+    
+        <form action="php/allIngredientsByName.php" method="post">
+    
+          <select id="recipes" class="selection" name="selection">
+            <option value="Gemuese Suppe">Gemuesesuppe</option>
+            <option value="Wiener Wuerstchen-Suppe">Wiener Wuerstchen-Suppe</option>
+            <option value="Tomate-Mozzarella-Teller">Tomate-Mozzarella-Teller</option>
+            <option value="Falafel mit Kartoffelpueree und Ei">Falafel mit Kartoffelpueree und Ei</option>
+            <option value="Bauernfruehstueck">Bauernfruehstueck</option>
+          </select>
+    
+          <input type="submit" value="Zeigen">
+    
+        </form>
+
+    </main>
+</body>
+</html>
