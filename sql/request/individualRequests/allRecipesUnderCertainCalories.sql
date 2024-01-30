@@ -1,0 +1,2 @@
+-- Auswahl aller Rezepte, die eine bestimmte Kalorienmenge nicht überschreiten
+SELECT * FROM rezepte WHERE REZEPTENR IN (SELECT REZEPTENR From REZEPTEZUTAT INNER JOIN ZUTAT on REZEPTEZUTAT.ZUTATENNR = zutat.ZUTATENNR GROUP BY REZEPTENR HAVING SUM(KALORIEN) < 200);

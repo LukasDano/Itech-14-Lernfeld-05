@@ -1,0 +1,2 @@
+-- Auswahl aller Rezepte, die eine gewisse Zutat enthalten
+SELECT * FROM REZEPTE WHERE REZEPTENR IN (SELECT REZEPTENR FROM REZEPTEZUTAT WHERE ZUTATENNR = 9001);
