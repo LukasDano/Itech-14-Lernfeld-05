@@ -10,33 +10,184 @@
 </head>
 
 <body>
-    <header>
-        <h1>Willkommen bei Kraut und Rüben!</h1>
-    </header>
+  <header>
+    <p></p>
+    <a href=""><img src="pictures/logo.png" alt="Logo"></a>
+    <p></p>
+</header>
 
     <main>
-        <h2>Unser Angebot</h2>
-        <p>Unser Angebot ist Nachhaltig & Regional</p>
+      <section id="rezept">
+        <h2>Unser Angebot ist Nachhaltig & Regional</h2>
+        <h2 align="right">Datum, Uhrzeit</h2> </h2>
+        <h2 align="right" id="datetime"></h2>
+        <script>
+          getDateAndTime();
+      </script>
 
-        <div id=title>Zeige alle Zutaten eines Rezepts an</div>
         <p>
+          <div id=title>Zeige alle Zutaten eines Rezepts an</div>
     
-        <form action="php/allIngredientsByName.php" method="post">
+          <form action="php/01 - allIngredientsByName.php" method="post">
     
-          <select id="recipes" class="selection" name="selection">
-            <option value="Gemuese Suppe">Gemuesesuppe</option>
-            <option value="Wiener Wuerstchen-Suppe">Wiener Wuerstchen-Suppe</option>
-            <option value="Tomate-Mozzarella-Teller">Tomate-Mozzarella-Teller</option>
-            <option value="Falafel mit Kartoffelpueree und Ei">Falafel mit Kartoffelpueree und Ei</option>
-            <option value="Bauernfruehstueck">Bauernfruehstueck</option>
-          </select>
+            <select id="recipes" class="selection" name="selection">
+              <option value="Gemuese Suppe">Gemuesesuppe</option>
+              <option value="Wiener Wuerstchen-Suppe">Wiener Wuerstchen-Suppe</option>
+              <option value="Tomate-Mozzarella-Teller">Tomate-Mozzarella-Teller</option>
+              <option value="Tofu-Wuerstchen-Suppe">Tofu-Wuerstchen-Suppe</option>
+              <option value="Falafel mit Kartoffelpueree und Ei">Falafel mit Kartoffelpueree und Ei</option>
+              <option value="Bauernfruehstueck">Bauernfruehstueck</option>
+            </select>
+      
+            <div class="tooltip">
+              <input type="submit" value="Zeigen">
+              <span class="tooltiptext">Bestätigen sie hier ihre Rezeptauswahl</span>
+            </div>
     
-          <div class="tooltip">
-            <input type="submit" value="Zeigen">
-            <span class="tooltiptext">Bestätigen sie hier ihre Rezeptauswahl</span>
-          </div>
+          </form>
+        </p>
+
+        <p>
+          <div id=title>Alle Rezepte, die ein Bestimmte Kategorie erfüllen</div>
     
-        </form>
+          <form action="php/02 - allRecipesFromCategory.php" method="post">
+    
+            <select id="recipes" class="selection" name="selection">
+              <option value="01">Vegan</option>
+              <option value="02">Vegetarisch</option>
+              <option value="03">Gerichte mit Fleisch</option>
+            </select>
+      
+            <div class="tooltip">
+              <input type="submit" value="Zeigen">
+              <span class="tooltiptext">Bestätigen Sie die ausgewählte Kategorie</span>
+            </div>
+    
+          </form>
+        </p>
+
+        <p>
+          <div id=title>Auswahl aller Rezepte, die eine gewisse Zutat enthalten</div>
+    
+          <form action="php/03 - allRecipesContainingGivenIngredient.php" method="post">
+    
+            <select id="recipes" class="selection" name="selection">
+              <option value="1001">Zucchini</option>
+              <option value="1002">Zwiebel</option>
+              <option value="1003">Tomate</option>
+              <option value="1004">Schalotte</option>
+              <option value="1005">Karotte</option>
+              <option value="1006">Kartofffel</option>
+              <option value="1007">Rucola</option>
+              <option value="1008">Lauch</option>
+              <option value="1009">Knoblauch</option>
+              <option value="1010">Basilikum</option>
+              <option value="1011">Süßkartoffel</option>
+              <option value="1012">Schnittlauch</option>
+              <option value="2001">Apfel</option>
+              <option value="3001">Vollmilch. 3.5%</option>
+              <option value="3002">Mozzarella</option>
+              <option value="3003">Butter</option>
+              <option value="4001">Ei</option>
+              <option value="5001">Wiener Würstchen</option>
+              <option value="6300">Kichererbsen</option>
+              <option value="6408">Couscous</option>
+              <option value="7043">Gemüsebrühe</option>
+              <option value="9001">Tofu-Würstchen</option>
+            </select>
+      
+            <div class="tooltip">
+              <input type="submit" value="Zeigen">
+              <span class="tooltiptext">Bestätigen sie hier ihre Zutatauswahl</span>
+            </div>
+    
+          </form>
+        </p>
+
+        <p>
+          <div id=title>Berechne die durchschnittlichen Nährwerte aller Bestellungen eines Kunden</div>
+    
+          <form action="php/04 - calculatingAverageNutritionalValues.php" method="post">
+    
+            <select id="recipes" class="selection" name="selection">
+              <option value="2001">2001</option>
+              <option value="2002">2002</option>
+              <option value="2003">2003</option>
+              <option value="2004">2004</option>
+              <option value="2005">2005</option>
+              <option value="2006">2006</option>
+              <option value="2007">2007</option>
+              <option value="2008">2008</option>
+              <option value="2009">2009</option>
+            </select>
+      
+            <div class="tooltip">
+              <input type="submit" value="Zeigen">
+              <span class="tooltiptext">Bestätigen sie hier ihre Rezeptauswahl</span>
+            </div>
+    
+          </form>
+        </p>
+
+        <p>
+          <div id=title>Anzeigen aller Zutaten die in keinem Rezept enthalten sind</div>
+    
+          <form action="php/05 - allIngredientsNotInRecipe.php" method="post">
+    
+              <input type="submit" value="zeigen"></input>
+    
+          </form>
+        </p>
+
+        <p>
+          <div id=title>Zeige alle Rezepte die eine bestimmte Kalorienanzahl nicht überschreiten</div>
+    
+          <form action="php/06 - allRecipesUnderCertainCalories.php" method="post">
+    
+            <select id="recipes" class="selection" name="selection">
+              <option value="100">100</option>
+              <option value="200">200</option>
+              <option value="300">300</option>
+              <option value="400">400</option>
+              <option value="500">500</option>
+            </select>
+      
+            <div class="tooltip">
+              <input type="submit" value="Zeigen">
+              <span class="tooltiptext">Bestätigen sie hier die Auswahl ihrer Ehrnährungskategorie</span>
+            </div>
+    
+          </form>
+        </p>
+
+        <p>
+          <div id=title>Zeige alle Rezepte mit weniger als 5 Zutaten an</div>
+    
+          <form action="php/07 - allRecipesContainingLessThenFiveIngredients.php" method="post">
+    
+              <input type="submit" value="zeigen"></input>
+    
+          </form>
+        </p>
+
+        <p>
+          <div id=title>Zeige alle Rezepte mit weniger als 5 Zutaten aus einer bestimmten Ehrnährungskategorie an</div>
+    
+          <form action="php/08 - allRecipesContainingLessThenFiveIngredientsAndHaveCertainCatagorie.php" method="post">
+    
+            <select id="recipes" class="selection" name="selection">
+              <option value="01">Vegan</option>
+              <option value="02">Vegetarisch</option>
+              <option value="03">Gerichte mit Fleisch</option>
+            </select>
+      
+            <div class="tooltip">
+              <input type="submit" value="Zeigen">
+              <span class="tooltiptext">Bestätigen sie hier die Auswahl ihrer Ehrnährungskategorie</span>
+            </div>
+    
+          </form>
+        </p>
 
     </main>
 </body>

@@ -33,7 +33,6 @@
 
 -- RECHT AUF LOESCHENUNG:
 
-	
 	UPDATE kunde SET nachname = '', vorname = '', GEBURTSDATUM ='', 
     STRASSE = '', HAUSNR = '', plz = '', ort = '', 
     TELEFON = '', EMAIL = ''  
