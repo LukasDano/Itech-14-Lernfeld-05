@@ -1,0 +1,5 @@
+Tabs:
+neue rezepte, neue kategorien, neue beschränkungen EINFÜGEN (muss aber noch programmiert werden) -> wichtig dabei ist, dass man mehrere Dinge übergeben muss
+
+log in
+wetter essens empfelungen

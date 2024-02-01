@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="style.css">
     <script src="script.js"></script>
 
+  <link rel="icon" href="pictures/krautundruebenTab.png" alt="logo">
     <title>Kraut und Rüben</title>
 </head>
 
@@ -17,13 +18,42 @@
 </header>
 
     <main>
-      <section id="rezept">
-        <h2>Unser Angebot ist Nachhaltig & Regional</h2>
-        <h2 align="right">Datum, Uhrzeit</h2> </h2>
-        <h2 align="right" id="datetime"></h2>
-        <script>
-          getDateAndTime();
-      </script>
+
+      <!-- Tab links -->
+      <div class="tab">
+        <button class="tablinks" onclick="openCity(event, 'home')">Home</button>
+        <button class="tablinks" onclick="openCity(event, 'abfragen')">Abfragen</button>
+        <button class="tablinks" onclick="openCity(event, 'impressum')">Über uns</button>
+      </div>
+
+      <!-- Tab content -->
+      <div id="home" class="tabcontent">
+
+        <section id="rezept">
+          <h2>Unser Angebot ist Nachhaltig & Regional</h2>
+          <h2 align="right">Datum, Uhrzeit</h2> </h2>
+          <h2 align="right" id="datetime"></h2>
+          <script>
+            getDateAndTime();
+        </script>
+
+        <div id="HomeText">
+          <p>
+            Was bieten wir unseren Kunden:
+            <ul>
+              <li>Produkte aus der Region</li>
+              <li>Niedrige Preise</li>
+              <li>Lieferung an die Haustür an jedem Tag der Woche (von 08 - 18 Uhr)</li>
+              <li>Und vieles mehr...</li>
+              <p>Jetz neu:
+              <li>Vorgefertigte Rezepte, welche Automatisch Zutaten zusammenstellen</li>
+            </ul>
+          </p>
+        </div>
+
+      </div>
+
+      <div id="abfragen" class="tabcontent">
 
         <p>
           <div id=title>Zeige alle Zutaten eines Rezepts an</div>
@@ -188,7 +218,49 @@
     
           </form>
         </p>
+      </div>
+
+      <div id="impressum" class="tabcontent">
+
+        <div>
+          <h1>Hello, it's fresh - it's bio fresh!</h1>
+          <p>
+            Wir sind Kraut und Rüben. Unser Unternehmen hat es sich zur Aufgabe gemacht, Haushalte in ganz Hamburg mit Bio-Produkten sowie Obst, Gemüse, Fleisch,
+            verschiedenen Molkeriprodukten zu versorgen. Dabei ist uns besonders wichtig, das all unsere Produkte aus der Region kommen und möglichts umweltfreundlich sind.
+          </p>
+          <p>
+            Seid kurzem haben wir einige Rezepte im Angebot, sodass wir unsere Kunden die Auswahl der Zutaten automatisch erledigen können.
+          </p>
+        </div>
+
+      <div>
+        <p> 
+        Hier geht es zu unserer Datenschutzerklärung:
+        <a href="../Datenschutzerklaerung_Kraut_und_Rueben.docx">
+          <button>
+            Datenschutzerklärung
+          </button>
+        </a>
+      </div>
+
+      </div> 
+    
+      <div class="tablinks" onclick="openCity(event, 'home')" id="defaultOpen"></div>
+    
+      <script>
+      // Get the element with id="defaultOpen" and click on it
+      document.getElementById("defaultOpen").click();
+      </script> 
+    
+       <!-- Click on the <span> element to close the tab -->
+    
+       <div id="London" class="tabcontent">
+        <h3>London</h3>
+        <p>London is the capital city of England.</p>
+        <span onclick="this.parentElement.style.display='none'">x</span>
+       </div> 
 
     </main>
+
 </body>
 </html>
