@@ -21,9 +21,9 @@
 
       <!-- Tab links -->
       <div class="tab">
-        <button class="tablinks" onclick="openCity(event, 'home')">Home</button>
-        <button class="tablinks" onclick="openCity(event, 'abfragen')">Abfragen</button>
-        <button class="tablinks" onclick="openCity(event, 'impressum')">Über uns</button>
+        <button class="tablinks" onclick="openTab(event, 'home')">Home</button>
+        <button class="tablinks" onclick="openTab(event, 'abfragen')">Abfragen</button>
+        <button class="tablinks" onclick="openTab(event, 'impressum')">Über uns</button>
       </div>
 
       <!-- Tab content -->
@@ -245,20 +245,12 @@
 
       </div> 
     
-      <div class="tablinks" onclick="openCity(event, 'home')" id="defaultOpen"></div>
+      <div class="tablinks" onclick="openTab(event, 'home')" id="defaultOpen"></div>
     
       <script>
       // Get the element with id="defaultOpen" and click on it
       document.getElementById("defaultOpen").click();
-      </script> 
-    
-       <!-- Click on the <span> element to close the tab -->
-    
-       <div id="London" class="tabcontent">
-        <h3>London</h3>
-        <p>London is the capital city of England.</p>
-        <span onclick="this.parentElement.style.display='none'">x</span>
-       </div> 
+      </script>
 
     </main>
 
