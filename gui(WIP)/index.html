@@ -22,7 +22,7 @@
       <!-- Tab links -->
       <div class="tab">
         <button class="tablinks" onclick="openTab(event, 'home')">Home</button>
-        <button class="tablinks" onclick="openTab(event, 'abfragen')">Abfragen</button>
+        <button class="tablinks" onclick="openTab(event, 'select')">Abfragen</button>
         <button class="tablinks" onclick="openTab(event, 'impressum')">Über uns</button>
       </div>
 
@@ -35,6 +35,7 @@
           <h2 align="right" id="datetime"></h2>
           <script>
             getDateAndTime();
+            currentTime();
         </script>
 
         <div id="HomeText">
@@ -53,7 +54,7 @@
 
       </div>
 
-      <div id="abfragen" class="tabcontent">
+      <div id="select" class="tabcontent">
 
         <p>
           <div id=title>Zeige alle Zutaten eines Rezepts an</div>
@@ -69,11 +70,8 @@
               <option value="Bauernfruehstueck">Bauernfruehstueck</option>
             </select>
       
-            <div class="tooltip">
               <input type="submit" value="Zeigen">
-              <span class="tooltiptext">Bestätigen sie hier ihre Rezeptauswahl</span>
-            </div>
-    
+
           </form>
         </p>
 
@@ -88,12 +86,9 @@
               <option value="03">Gerichte mit Fleisch</option>
             </select>
       
-            <div class="tooltip">
-              <input type="submit" value="Zeigen">
-              <span class="tooltiptext">Bestätigen Sie die ausgewählte Kategorie</span>
-            </div>
-    
-          </form>
+            <input type="submit" value="Zeigen">
+
+        </form>
         </p>
 
         <p>
@@ -126,12 +121,9 @@
               <option value="9001">Tofu-Würstchen</option>
             </select>
       
-            <div class="tooltip">
-              <input type="submit" value="Zeigen">
-              <span class="tooltiptext">Bestätigen sie hier ihre Zutatauswahl</span>
-            </div>
-    
-          </form>
+            <input type="submit" value="Zeigen">
+
+        </form>
         </p>
 
         <p>
@@ -151,12 +143,9 @@
               <option value="2009">2009</option>
             </select>
       
-            <div class="tooltip">
-              <input type="submit" value="Zeigen">
-              <span class="tooltiptext">Bestätigen sie hier ihre Rezeptauswahl</span>
-            </div>
-    
-          </form>
+            <input type="submit" value="Zeigen">
+
+        </form>
         </p>
 
         <p>
@@ -182,12 +171,9 @@
               <option value="500">500</option>
             </select>
       
-            <div class="tooltip">
-              <input type="submit" value="Zeigen">
-              <span class="tooltiptext">Bestätigen sie hier die Auswahl ihrer Ehrnährungskategorie</span>
-            </div>
-    
-          </form>
+            <input type="submit" value="Zeigen">
+
+        </form>
         </p>
 
         <p>
@@ -211,12 +197,9 @@
               <option value="03">Gerichte mit Fleisch</option>
             </select>
       
-            <div class="tooltip">
-              <input type="submit" value="Zeigen">
-              <span class="tooltiptext">Bestätigen sie hier die Auswahl ihrer Ehrnährungskategorie</span>
-            </div>
-    
-          </form>
+            <input type="submit" value="Zeigen">
+
+        </form>
         </p>
       </div>
 
@@ -243,7 +226,8 @@
         </a>
       </div>
 
-      </div> 
+      </div>
+      
     
       <div class="tablinks" onclick="openTab(event, 'home')" id="defaultOpen"></div>
     
@@ -253,6 +237,6 @@
       </script>
 
     </main>
-
+    
 </body>
 </html>
