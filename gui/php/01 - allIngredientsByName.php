@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="../style.css">
     <script src="script.js"></script>
 
+    <link rel="icon" href="../pictures/krautundruebenTab.png" alt="logo">
     <title>Kraut und Rüben</title>
 </head>
 
@@ -20,18 +21,19 @@
 
 //---------------------------------------------------------------------------------------------------------------------------------
 
-// SELECT * FROM rezepte WHERE REZEPTENR IN (SELECT REZEPTENR From REZEPTEZUTAT INNER JOIN ZUTAT on REZEPTEZUTAT.ZUTATENNR = zutat.ZUTATENNR GROUP BY REZEPTENR HAVING SUM(KALORIEN) < 200);
+// SELECT * FROM ZUTAT WHERE ZUTATENNR in (SELECT ZUTATENNR from REZEPTEZUTAT WHERE REZEPTENR IN (SELECT REZEPTENR FROM REZEPTE WHERE REZEPTENAME = 'Gemuese Suppe'));
 
-$requestnumber = $_POST["selection"];
+$requestname = $_POST["selection"];
 
 $sql = '
 
-SELECT REZEPTENR, REZEPTENAME, MENGE
-FROM REZEPTE
-WHERE REZEPTENR IN 
-(SELECT REZEPTENR 
-From REZEPTEZUTAT INNER JOIN ZUTAT on REZEPTEZUTAT.ZUTATENNR = zutat.ZUTATENNR 
-GROUP BY REZEPTENR HAVING SUM(KALORIEN) < "' . $requestnumber . '")
+SELECT ZUTATENNR, BEZEICHNUNG, EINHEIT, NETTOPREIS, lieferant, KALORIEN, KOHLENHYDRATE, PROTEIN
+FROM ZUTAT
+WHERE ZUTATENNR in 
+(SELECT ZUTATENNR from REZEPTEZUTAT WHERE REZEPTENR IN 
+(SELECT REZEPTENR FROM REZEPTE
+
+WHERE REZEPTENAME = "' . $requestname . '"))
 
 ';
 
@@ -99,10 +101,9 @@ if ($result->num_rows > 0){
 
   echo $style;
 
-  echo "<div id='name'> Rezepte, die weniger als " . $requestnumber . " Kalorien haben:</div>";
+  echo "<div id='name'> Rezept: " . $requestname . " - Zutaten</div>";
   echo "<table border='1'>";
-  echo "<th>Rezepte ID</th> <th>Name</th> <th>Menge</th>";
-
+  echo "<th>Zutaten ID</th> <th>Name</th> <th>Einheit</th> <th>Nettopreis</th> <th>Lieferant</th> <th>Kalorien</th> <th>Kohlenhydrate</th> <th>Protein</th>";
 
   while($row = $result->fetch_assoc()){
 

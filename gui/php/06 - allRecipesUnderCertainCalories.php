@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="../style.css">
     <script src="script.js"></script>
 
+    <link rel="icon" href="../pictures/krautundruebenTab.png" alt="logo">
     <title>Kraut und Rüben</title>
 </head>
 
@@ -20,25 +21,18 @@
 
 //---------------------------------------------------------------------------------------------------------------------------------
 
-// SELECT * FROM REZEPTE WHERE REZEPTENR IN (SELECT REZEPTENR FROM REZEPTEZUTAT WHERE ZUTATENNR = 9001);
+// SELECT * FROM rezepte WHERE REZEPTENR IN (SELECT REZEPTENR From REZEPTEZUTAT INNER JOIN ZUTAT on REZEPTEZUTAT.ZUTATENNR = zutat.ZUTATENNR GROUP BY REZEPTENR HAVING SUM(KALORIEN) < 200);
 
-$requestID = $_POST["selection"];
+$requestnumber = $_POST["selection"];
 
 $sql = '
 
 SELECT REZEPTENR, REZEPTENAME, MENGE
-FROM REZEPTE 
+FROM REZEPTE
 WHERE REZEPTENR IN 
-(SELECT REZEPTENR FROM REZEPTEZUTAT 
-WHERE ZUTATENNR = "' . $requestID . '")
-
-';
-
-$sqlName = '
-
-SELECT BEZEICHNUNG
-FROM ZUTAT 
-WHERE ZUTATENNR = "' . $requestID . '"
+(SELECT REZEPTENR 
+From REZEPTEZUTAT INNER JOIN ZUTAT on REZEPTEZUTAT.ZUTATENNR = zutat.ZUTATENNR 
+GROUP BY REZEPTENR HAVING SUM(KALORIEN) < "' . $requestnumber . '")
 
 ';
 
@@ -100,31 +94,16 @@ $dbname = "krautundrueben";
 $conn = new mysqli($servername, $username, $password, $dbname);
 if ($conn->connect_error) { die("Connection failed: " . $conn->connect_error);}
 
-
-
-$resultName = $conn->query($sqlName);
-
-if ($resultName->num_rows > 0) {
-
-  $row = $resultName->fetch_assoc();
-  $bezeichnung = $row['BEZEICHNUNG'];
-
-} else {
-
-  echo "No results found.";
-
-}
-
-
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0){
 
   echo $style;
 
-  echo "<div id='name'> Alle Rezepte, die " . $bezeichnung . " enthalten</div>";
+  echo "<div id='name'> Rezepte, die weniger als " . $requestnumber . " Kalorien haben:</div>";
   echo "<table border='1'>";
-  echo "<th>Rezept ID</th> <th>Name</th> <th>Menge</th>";
+  echo "<th>Rezepte ID</th> <th>Name</th> <th>Menge</th>";
+
 
   while($row = $result->fetch_assoc()){
 

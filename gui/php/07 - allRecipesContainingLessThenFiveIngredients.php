@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="../style.css">
     <script src="script.js"></script>
 
+    <link rel="icon" href="../pictures/krautundruebenTab.png" alt="logo">
     <title>Kraut und Rüben</title>
 </head>
 
@@ -20,13 +21,15 @@
 
 //---------------------------------------------------------------------------------------------------------------------------------
 
-// SELECT * FROM ZUTAT WHERE ZUTATENNR NOT IN (SELECT ZUTATENNR FROM REZEPTEZUTAT);
+// SELECT * FROM rezepte WHERE rezeptenr IN (SELECT REZEPTENR FROM rezeptezutat GROUP BY REZEPTENR HAVING COUNT(*) < 5);
 
 $sql = '
 
-SELECT ZUTATENNR, BEZEICHNUNG, EINHEIT, NETTOPREIS, lieferant, KALORIEN, KOHLENHYDRATE, PROTEIN
-FROM ZUTAT WHERE ZUTATENNR NOT IN 
-(SELECT ZUTATENNR FROM REZEPTEZUTAT);
+SELECT REZEPTENR, REZEPTENAME, MENGE
+FROM rezepte 
+WHERE rezeptenr IN 
+(SELECT REZEPTENR FROM rezeptezutat 
+GROUP BY REZEPTENR HAVING COUNT(*) < 5)
 
 ';
 
@@ -94,9 +97,9 @@ if ($result->num_rows > 0){
 
   echo $style;
 
-  echo "<div id='name'>Zutaten die nicht in einem Rezept sind</div>";
+  echo "<div id='name'> Alle Rezepte mit weniger als 5 Zutaten </div>";
   echo "<table border='1'>";
-  echo "<th>Zutaten ID</th> <th>Name</th> <th>Einheit</th> <th>Nettopreis</th> <th>Lieferant</th> <th>Kalorien</th> <th>Kohlenhydrate</th> <th>Protein</th>";
+  echo "<th>Rezept ID</th> <th>Name</th> <th>Menge</th>";
 
   while($row = $result->fetch_assoc()){
 

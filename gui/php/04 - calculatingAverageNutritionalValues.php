@@ -3,17 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../style.css">
     <script src="script.js"></script>
 
+    <link rel="icon" href="../pictures/krautundruebenTab.png" alt="logo">
     <title>Kraut und Rüben</title>
 </head>
 
-<main>
-  <a href="../index.html">
-  <button color="red">Home</button>
-  </a>
-</main>
+<body>
+  <header>
+        <a href="../index.html"><img src="../pictures/logo.png" alt="Logo"></a>
+  </header>
+  <p>
+</body>
 
 <?php
 
@@ -26,6 +28,8 @@
 // SELECT BESTELLNR, AVG(KALORIEN * bestellungzutat.MENGE) AS "Durchschnittliche Kalorien", AVG(KOHLENHYDRATE * bestellungzutat.MENGE) AS "Durchschnittliche Kohlenhydrate", AVG(PROTEIN * bestellungzutat.MENGE) AS "Durchschnittliche Proteine" 
 // FROM bestellungzutat INNER JOIN zutat ON bestellungzutat.ZUTATENNR = zutat.ZUTATENNR
 // WHERE bestellungzutat.BESTELLNR IN (SELECT bestellung.BESTELLNR FROM kunde right JOIN bestellung ON kunde.KUNDENNR = bestellung.KUNDENNR WHERE kunde.KUNDENNR = 2007) GROUP BY bestellnr;
+
+// SELECT nachname FROM kunde WHERE kundennr = 2004;
 
 $requestID = $_POST["selection"];
 
@@ -48,6 +52,14 @@ WHERE bestellungzutat.BESTELLNR IN
 (SELECT bestellung.BESTELLNR 
 FROM kunde right JOIN bestellung ON kunde.KUNDENNR = bestellung.KUNDENNR 
 WHERE kunde.KUNDENNR = "' . $requestID . '") GROUP BY bestellnr;
+
+';
+
+$sqlName = '
+
+SELECT NACHNAME
+FROM KUNDE 
+WHERE kUNDENNR = "' . $requestID . '"
 
 ';
 
@@ -112,6 +124,19 @@ if ($conn->connect_error) { die("Connection failed: " . $conn->connect_error);}
 
 $result = $conn->query($sql);
 $resultMennge = $conn->query($sqlMenge);
+$resultName = $conn->query($sqlName);
+
+
+if ($resultName->num_rows > 0) {
+
+  $row = $resultName->fetch_assoc();
+  $bezeichnung = $row['NACHNAME'];
+
+} else {
+
+  echo "No results found.";
+
+}
 
 
 if ($result->num_rows > 0){
@@ -119,7 +144,7 @@ if ($result->num_rows > 0){
   echo $style;
 
   echo "<p> <div>";
-  echo "<div id='name'> KundenID: " . $requestID . " - Durchschnittliche Nährwerte aller Bestellungen:</div>";
+  echo "<div id='name'> KundenID: " . $requestID . ", " . $bezeichnung . " - Durchschnittliche Nährwerte aller Bestellungen:</div>";
   echo "<div> (Die zweite Tabelle berücksichtigt die Menge der bestellten Zutaten) </div>";
   echo "<table border='1'>";
   echo "<th>Bestll ID</th> <th>Durchschnittliche Kalorien</th> <th>Durchschnittliche Kohlenhydrate</th> <th>Durchschnittliche Proteine</th>";

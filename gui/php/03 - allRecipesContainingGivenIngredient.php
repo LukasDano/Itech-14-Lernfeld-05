@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="../style.css">
     <script src="script.js"></script>
 
+    <link rel="icon" href="../pictures/krautundruebenTab.png" alt="logo">
     <title>Kraut und Rüben</title>
 </head>
 
@@ -20,15 +21,25 @@
 
 //---------------------------------------------------------------------------------------------------------------------------------
 
-// SELECT * FROM rezepte WHERE rezeptenr IN (SELECT REZEPTENR FROM rezeptezutat GROUP BY REZEPTENR HAVING COUNT(*) < 5);
+// SELECT * FROM REZEPTE WHERE REZEPTENR IN (SELECT REZEPTENR FROM REZEPTEZUTAT WHERE ZUTATENNR = 9001);
+
+$requestID = $_POST["selection"];
 
 $sql = '
 
 SELECT REZEPTENR, REZEPTENAME, MENGE
-FROM rezepte 
-WHERE rezeptenr IN 
-(SELECT REZEPTENR FROM rezeptezutat 
-GROUP BY REZEPTENR HAVING COUNT(*) < 5)
+FROM REZEPTE 
+WHERE REZEPTENR IN 
+(SELECT REZEPTENR FROM REZEPTEZUTAT 
+WHERE ZUTATENNR = "' . $requestID . '")
+
+';
+
+$sqlName = '
+
+SELECT BEZEICHNUNG
+FROM ZUTAT 
+WHERE ZUTATENNR = "' . $requestID . '"
 
 ';
 
@@ -90,13 +101,29 @@ $dbname = "krautundrueben";
 $conn = new mysqli($servername, $username, $password, $dbname);
 if ($conn->connect_error) { die("Connection failed: " . $conn->connect_error);}
 
+
+
+$resultName = $conn->query($sqlName);
+
+if ($resultName->num_rows > 0) {
+
+  $row = $resultName->fetch_assoc();
+  $bezeichnung = $row['BEZEICHNUNG'];
+
+} else {
+
+  echo "No results found.";
+
+}
+
+
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0){
 
   echo $style;
 
-  echo "<div id='name'> Alle Rezepte mit weniger als 5 Zutaten </div>";
+  echo "<div id='name'> Alle Rezepte, die " . $bezeichnung . " enthalten</div>";
   echo "<table border='1'>";
   echo "<th>Rezept ID</th> <th>Name</th> <th>Menge</th>";
 

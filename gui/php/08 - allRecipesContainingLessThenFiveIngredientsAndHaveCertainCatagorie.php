@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="../style.css">
     <script src="script.js"></script>
 
+    <link rel="icon" href="../pictures/krautundruebenTab.png" alt="logo">
     <title>Kraut und Rüben</title>
 </head>
 
@@ -20,19 +21,35 @@
 
 //---------------------------------------------------------------------------------------------------------------------------------
 
+// SELECT * FROM rezepte WHERE rezeptenr IN (SELECT REZEPTENR FROM rezeptezutat GROUP BY REZEPTENR HAVING COUNT(*) < 5) AND REZEPTENR in (SELECT REZEPTENR FROM ernaehrungskategorie WHERE KATEGORIENR = 01);
+
 // SELECT * FROM REZEPTE WHERE REZEPTENR in (SELECT REZEPTENR FROM ernaehrungskategorie WHERE KATEGORIENR = 01);
 
-$requestID = $_POST["selection"];
+$requestID =  $_POST["selection"];
 
 $sql = '
 
-SELECT REZEPTENR, REZEPTENAME, Menge
-FROM REZEPTE
-WHERE REZEPTENR in 
+SELECT REZEPTENR, REZEPTENAME, MENGE
+FROM rezepte 
+WHERE rezeptenr IN 
+(SELECT REZEPTENR FROM rezeptezutat 
+GROUP BY REZEPTENR HAVING COUNT(*) < 5) AND 
+REZEPTENR in 
 (SELECT REZEPTENR FROM ernaehrungskategorie 
 WHERE KATEGORIENR = "' . $requestID . '")
 
 ';
+
+// SELECT KATEGORIENAME FROM ernaehrungskategorie WHERE KATEGORIENR = 01 LIMIT 1;
+
+$sqlName = '
+
+SELECT KATEGORIENAME
+FROM ernaehrungskategorie 
+WHERE KATEGORIENR = "' . $requestID . '" LIMIT 1
+
+';
+
 
 //---------------------------------------------------------------------------------------------------------------------------------
 
@@ -92,15 +109,33 @@ $dbname = "krautundrueben";
 $conn = new mysqli($servername, $username, $password, $dbname);
 if ($conn->connect_error) { die("Connection failed: " . $conn->connect_error);}
 
+
+
+$resultName = $conn->query($sqlName);
+
+if ($resultName->num_rows > 0) {
+
+  $row = $resultName->fetch_assoc();
+  $bezeichnung = $row['KATEGORIENAME'];
+
+} else {
+
+  echo "No results found.";
+
+}
+
+
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0){
 
   echo $style;
 
-  echo "<div id='name'> Rezept: " . $requestID . " - Zutaten</div>";
+  echo "<script> getDateAndTime(); </script>";
+
+  echo "<div id='name'> Alle Rezepte mit weniger als 5 Zutaten die " . $bezeichnung . " sind. </div>";
   echo "<table border='1'>";
-  echo "<th>Rezept ID</th> <th>Rezeptname</th> <th>Portionen</th>";
+  echo "<th>Rezept ID</th> <th>Name</th> <th>Menge</th>";
 
   while($row = $result->fetch_assoc()){
 

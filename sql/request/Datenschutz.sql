@@ -11,7 +11,7 @@
     WHERE bestellungzutat.BESTELLNR IN (SELECT bestellung.BESTELLNR FROM kunde inner JOIN bestellung ON kunde.KUNDENNR = bestellung.KUNDENNR WHERE kunde.KUNDENNR = 2007);
 
 
---RECHT AUF BERRICHTUGUNG:
+-- RECHT AUF BERRICHTUGUNG:
 
     -- Aenderungen bestimmter Daten der Kundentabelle
     UPDATE kunde SET nachname = 'Mustermann' WHERE kundennr = 2002;
